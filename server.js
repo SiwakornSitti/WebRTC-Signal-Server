@@ -12,7 +12,7 @@ function resolveURL(url) {
 var isUseHTTPs = false;
 
 // var port = 443;
-var port = 9001 || process.env.PORT || 9001;
+var port = process.env.PORT || 9001;
 
 var fs = require('fs');
 var path = require('path');
