@@ -283,7 +283,7 @@ module.exports = exports = function(app, socketCallback) {
         }
 
         if (!message.message.userLeft && !listOfUsers[message.sender].connectedWith[message.remoteUserId] && //Not connect with remoteUserId
-        !!listOfUsers[message.remoteUserId]) { // There isn't message remoteUserId in listOfUsers
+            !!listOfUsers[message.remoteUserId]) { // There isn't message remoteUserId in listOfUsers
 
           //Connect with remoteId
           listOfUsers[message.sender].connectedWith[message.remoteUserId] = listOfUsers[message.remoteUserId].socket;
@@ -463,6 +463,7 @@ module.exports = exports = function(app, socketCallback) {
         pushLogs('on-socketMessageEvent', e);
       }
     });
+    
     socket.on('disconnect', function() {
       try {
         if (socket && socket.namespace && socket.namespace.sockets) {
@@ -518,14 +519,14 @@ module.exports = exports = function(app, socketCallback) {
   }
 };
 
-var enableLogs = false;
+var enableLogs = true;
 
 try {
-  var _enableLogs = require('./config.json').enableLogs;
+  // var _enableLogs = require('./config.json').enableLogs;
 
-  if (_enableLogs) {
-    enableLogs = true;
-  }
+  // if (_enableLogs) {
+  //   enableLogs = true;
+  // }
 } catch (e) {
   enableLogs = false;
 }

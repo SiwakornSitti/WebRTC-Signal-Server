@@ -158,14 +158,6 @@ function runServer() {
     try {
       var params = socket.handshake.query;
 
-      // "socket" object is totally in your own hands!
-      // do whatever you want!
-
-      // in your HTML page, you can access socket as following:
-      // connection.socketCustomEvent = 'custom-message';
-      // var socket = connection.getSocket();
-      // socket.emit(connection.socketCustomEvent, { test: true });
-
       if (!params.socketCustomEvent) {
         params.socketCustomEvent = 'custom-message';
       }

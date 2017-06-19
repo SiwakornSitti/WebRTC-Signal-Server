@@ -11,7 +11,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
         maxRelayLimitPerUser = 2;
     }
 
-    //--**--//
     socket.on('join-broadcast', function(user) {
         try {
             if(!users[user.userid]) {
@@ -76,21 +75,18 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
         socket.broadcast.emit('scalable-broadcast-message', message);
     });
 
-    //--**--//
     socket.on('can-relay-broadcast', function() {
         if(users[socket.userid]) {
             users[socket.userid].canRelay = true;
         }
     });
 
-    //--**--//
     socket.on('can-not-relay-broadcast', function() {
         if(users[socket.userid]) {
             users[socket.userid].canRelay = false;
         }
     });
 
-    //--**--//
     socket.on('check-broadcast-presence', function(userid, callback) {
         // we can pass number of viewers as well
         try {
@@ -115,7 +111,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
         catch(e) {}
     });
 
-    //--**--//
     function getNumberOfBroadcastViewers(broadcastId) {
         try {
             var numberOfUsers = 0;
@@ -132,7 +127,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
         }
     }
 
-    //--**--/
     function notifyBroadcasterAboutNumberOfViewers(broadcastId, userLeft) {
         try {
             if(!broadcastId || !users[broadcastId] || !users[broadcastId].socket) return;
@@ -150,7 +144,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
         catch(e) {}
     }
 
-    //--**--//
     socket.on('disconnect', function() {
         try {
             if (!socket.isScalableBroadcastSocket) return;
@@ -177,7 +170,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                     var _user = users[n];
 
                     if(_user.broadcastId === user.broadcastId) {
-                        //--**--//
                         _user.socket.emit('broadcast-stopped', user.broadcastId);
                     }
                 }
@@ -228,7 +220,6 @@ function askNestedUsersToRejoin(relayReceivers) {
         consoleLog(e);
     }
 }
-//--**--//
 function getFirstAvailableBroadcaster(broadcastId, maxRelayLimitPerUser) {
     try {
         var broadcastInitiator = users[broadcastId];
