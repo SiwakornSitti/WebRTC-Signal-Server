@@ -12,7 +12,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
     }
 
     socket.on('join-broadcast', function(user) {
-        console.log('Join')
         try {
             if(!users[user.userid]) {
                 socket.userid = user.userid;
@@ -31,6 +30,8 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 };
 
                 notifyBroadcasterAboutNumberOfViewers(user.broadcastId);
+                        console.log('Join')
+
             }
 
             var relayUser = getFirstAvailableBroadcaster(user.broadcastId, maxRelayLimitPerUser);
