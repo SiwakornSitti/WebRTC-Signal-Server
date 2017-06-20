@@ -30,7 +30,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 };
 
                 notifyBroadcasterAboutNumberOfViewers(user.broadcastId);
-                        console.log('Join')
 
             }
 
@@ -137,7 +136,7 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
             if(userLeft === true) {
                 numberOfBroadcastViewers--;
             }
-
+            console.log('Join')
             users[broadcastId].socket.emit('number-of-broadcast-viewers-updated', {
                 numberOfBroadcastViewers: numberOfBroadcastViewers,
                 broadcastId: broadcastId
