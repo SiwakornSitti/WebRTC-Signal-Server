@@ -41,6 +41,8 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
             }
 
             if (relayUser && user.userid !== user.broadcastId) {
+                console.log('Choice 1');
+
                 var hintsToJoinBroadcast = {
                     typeOfStreams: relayUser.typeOfStreams,
                     userid: relayUser.userid,
@@ -61,6 +63,7 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 // logs for target relaying user
                 relayUser.socket.emit('logs', 'You <' + relayUser.userid + '>' + ' are now relaying/forwarding data/stream to <' + user.userid + '>');
             } else {
+                console.log('Choice 2');
                 users[user.userid].isBroadcastInitiator = true;
                 socket.emit('start-broadcasting', users[user.userid].typeOfStreams);
 
@@ -136,7 +139,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
             if(userLeft === true) {
                 numberOfBroadcastViewers--;
             }
-            console.log('Join')
             users[broadcastId].socket.emit('number-of-broadcast-viewers-updated', {
                 numberOfBroadcastViewers: numberOfBroadcastViewers,
                 broadcastId: broadcastId
@@ -223,6 +225,7 @@ function askNestedUsersToRejoin(relayReceivers) {
 }
 function getFirstAvailableBroadcaster(broadcastId, maxRelayLimitPerUser) {
     try {
+        console.log('getFirstAvailable');
         var broadcastInitiator = users[broadcastId];
 
         // if initiator is capable to receive users
