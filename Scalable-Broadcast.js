@@ -10,9 +10,9 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
     } catch (e) {
         maxRelayLimitPerUser = 2;
     }
-        console.log('join-broadcast')
 
     socket.on('join-broadcast', function(user) {
+        console.log('Join')
         try {
             if(!users[user.userid]) {
                 socket.userid = user.userid;
