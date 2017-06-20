@@ -66,7 +66,7 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 console.log('Choice 2');
                 users[user.userid].isBroadcastInitiator = true;
                 socket.emit('start-broadcasting', users[user.userid].typeOfStreams);
-
+                console.log('Test');
                 // logs to tell he is now broadcast initiator
                 socket.emit('logs', 'You <' + user.userid + '> are now serving the broadcast.');
             }
