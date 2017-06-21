@@ -68,6 +68,7 @@ module.exports = exports = function(app, socketCallback) {
   }
 
   function onConnection(socket) {
+
     //Parameter from the socket
     var params = socket.handshake.query;
     var socketMessageEvent = params.msgEvent || 'RTCMultiConnection-Message';

@@ -3,6 +3,9 @@
 // Documentation  - github.com/muaz-khan/RTCMultiConnection
 
 var users = {};
+function consoleLog(message){
+    console.log(message);
+}
 
 module.exports = exports = function(socket, maxRelayLimitPerUser) {
     try {
@@ -63,8 +66,8 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 // logs for target relaying user
                 relayUser.socket.emit('logs', 'You <' + relayUser.userid + '>' + ' are now relaying/forwarding data/stream to <' + user.userid + '>');
             } else {
-                console.log('Choice 2',users[user.userid].typeOfStreams);
                 users[user.userid].isBroadcastInitiator = true;
+                console.log('Choice 2',users[user.userid].typeOfStreams, socket.connected);
                 socket.emit('start-broadcasting', users[user.userid].typeOfStreams);
                 // logs to tell he is now broadcast initiator
                 socket.emit('logs', 'You <' + user.userid + '> are now serving the broadcast.');
@@ -224,7 +227,6 @@ function askNestedUsersToRejoin(relayReceivers) {
 }
 function getFirstAvailableBroadcaster(broadcastId, maxRelayLimitPerUser) {
     try {
-        console.log('getFirstAvailable');
         var broadcastInitiator = users[broadcastId];
 
         // if initiator is capable to receive users
