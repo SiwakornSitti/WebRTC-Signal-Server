@@ -44,7 +44,7 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
             }
 
             if (relayUser && user.userid !== user.broadcastId) {
-                console.log('Choice 1');
+                console.log('Choice 1 REMOTE');
 
                 var hintsToJoinBroadcast = {
                     typeOfStreams: relayUser.typeOfStreams,
@@ -67,7 +67,7 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
                 relayUser.socket.emit('logs', 'You <' + relayUser.userid + '>' + ' are now relaying/forwarding data/stream to <' + user.userid + '>');
             } else {
                 users[user.userid].isBroadcastInitiator = true;
-                console.log('Choice 2',users[user.userid].typeOfStreams, socket.connected);
+                console.log('Choice 2 BROADCASTER',users[user.userid].typeOfStreams, socket.connected);
                 socket.emit('start-broadcasting', users[user.userid].typeOfStreams);
                 // logs to tell he is now broadcast initiator
                 socket.emit('logs', 'You <' + user.userid + '> are now serving the broadcast.');
@@ -82,12 +82,14 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
     });
 
     socket.on('can-relay-broadcast', function() {
+        console.log('can-relay-broadcast')
         if(users[socket.userid]) {
             users[socket.userid].canRelay = true;
         }
     });
 
     socket.on('can-not-relay-broadcast', function() {
+        console.log('can-not-relay-broadcast')
         if(users[socket.userid]) {
             users[socket.userid].canRelay = false;
         }
