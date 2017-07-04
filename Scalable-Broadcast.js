@@ -143,7 +143,6 @@ module.exports = exports = function(socket, maxRelayLimitPerUser) {
             if(userLeft === true) {
                 numberOfBroadcastViewers--;
             }
-            console.log('on number-of-broadcast-viewers-updated');
             users[broadcastId].socket.emit('number-of-broadcast-viewers-updated', {
                 numberOfBroadcastViewers: numberOfBroadcastViewers,
                 broadcastId: broadcastId
