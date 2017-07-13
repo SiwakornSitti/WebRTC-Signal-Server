@@ -243,7 +243,7 @@ function getFirstAvailableBroadcaster(broadcastId, maxRelayLimitPerUser) {
                 return lastRelayUser;
             }
         }
-
+        
         // otherwise, search for a user who not relayed anything yet
         var userFound;
         for(var n in users) {
